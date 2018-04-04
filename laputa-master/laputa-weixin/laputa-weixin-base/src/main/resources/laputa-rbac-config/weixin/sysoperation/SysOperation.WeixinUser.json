@@ -1,0 +1,48 @@
+[
+  {
+    "sysOperation": {
+      "cname": "微信用户",
+      "code": "OPERATION_WEIXIN_WEIXINUSER",
+      "prefixUrl": "/weixin/weixinuser/*",
+      "descript": "微信用户操作"
+    },
+    "childSysOperation": [
+      {
+        "cname": "查看列表",
+        "code": "OPERATION_WEIXIN_WEIXINUSER_LIST",
+        "prefixUrl": "/weixin/weixinuser/list",
+        "descript": ""
+      },
+      {
+        "cname": "全量读取",
+        "code": "OPERATION_WEIXIN_WEIXINUSER_READEAGER",
+        "prefixUrl": "/weixin/weixinuser/readEager",
+        "descript": ""
+      },
+      {
+        "cname": "数据源读取",
+        "code": "OPERATION_WEIXIN_WEIXINUSER_READDATASOURCE",
+        "prefixUrl": "/weixin/weixinuser/readDataSource",
+        "descript": ""
+      },
+      {
+        "cname": "新增",
+        "code": "OPERATION_WEIXIN_WEIXINUSER_CREATE",
+        "prefixUrl": "/weixin/weixinuser/create",
+        "descript": ""
+      },
+      {
+        "cname": "删除",
+        "code": "OPERATION_WEIXIN_WEIXINUSER_DESTORY",
+        "prefixUrl": "/weixin/weixinuser/destory",
+        "descript": ""
+      },
+      {
+        "cname": "更新",
+        "code": "OPERATION_WEIXIN_WEIXINUSER_UPDATE",
+        "prefixUrl": "/weixin/weixinuser/update",
+        "descript": ""
+      }
+    ]
+  }
+]

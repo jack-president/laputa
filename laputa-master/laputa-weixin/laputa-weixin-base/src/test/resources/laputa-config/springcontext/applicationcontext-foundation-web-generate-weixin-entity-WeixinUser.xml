@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean class="com.laputa.foundation.web.generate.annotae.AnnotaeEntity">
+        <property name="name" value="微信用户"/>
+        <property name="clazz" value="com.laputa.foundation.web.weixin.entity.WeixinUser"/>
+        <property name="descript" value="微信用户"/>
+        <property name="fieldsAnnotaeMap">
+            <map>
+                <entry key="id">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="0"/>
+                        <property name="cname" value="主键"/>
+                    </bean>
+                </entry>
+
+                <entry key="subscribe">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="4"/>
+                        <property name="cname" value="是否订阅"/>
+                    </bean>
+                </entry>
+
+                <entry key="openid">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="5"/>
+                        <property name="cname" value="openid"/>
+                    </bean>
+                </entry>
+
+                <entry key="nickname">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="6"/>
+                        <property name="cname" value="昵称"/>
+                    </bean>
+                </entry>
+
+                <entry key="nicknameEmoji">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="7"/>
+                        <property name="cname" value="昵称表情"/>
+                    </bean>
+                </entry>
+
+                <entry key="sex">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="8"/>
+                        <property name="cname" value="性别"/>
+                    </bean>
+                </entry>
+
+                <entry key="language">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="9"/>
+                        <property name="cname" value="语言"/>
+                    </bean>
+                </entry>
+
+                <entry key="city">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="10"/>
+                        <property name="cname" value="城市"/>
+                    </bean>
+                </entry>
+
+                <entry key="province">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="11"/>
+                        <property name="cname" value="省份"/>
+                    </bean>
+                </entry>
+
+                <entry key="country">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="12"/>
+                        <property name="cname" value="国家"/>
+                    </bean>
+                </entry>
+
+                <entry key="headimgurl">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="13"/>
+                        <property name="cname" value="头像"/>
+                    </bean>
+                </entry>
+
+                <entry key="subscribeTime">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="14"/>
+                        <property name="cname" value="订阅时间"/>
+                    </bean>
+                </entry>
+
+                <entry key="privilege">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="15"/>
+                        <property name="cname" value="特权"/>
+                    </bean>
+                </entry>
+
+                <entry key="unionid">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="16"/>
+                        <property name="cname" value="unionid"/>
+                    </bean>
+                </entry>
+
+                <entry key="groupid">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="17"/>
+                        <property name="cname" value="groupid"/>
+                    </bean>
+                </entry>
+
+                <entry key="remark">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="18"/>
+                        <property name="cname" value="remark"/>
+                    </bean>
+                </entry>
+
+                <entry key="tagidList">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="19"/>
+                        <property name="cname" value="tagidList"/>
+                    </bean>
+                </entry>
+
+                <entry key="weixinCode">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="20"/>
+                        <property name="cname" value="所属微信编码"/>
+                    </bean>
+                </entry>
+
+
+
+
+                <entry key="createdBy">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="101"/>
+                        <property name="cname" value="创建用户"/>
+                        <property name="updatable" value="false"/>
+                    </bean>
+                </entry>
+                <entry key="createdDate">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="102"/>
+                        <property name="cname" value="创建时间"/>
+                        <property name="updatable" value="false"/>
+                    </bean>
+                </entry>
+                <entry key="lastModifiedBy">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="103"/>
+                        <property name="cname" value="最后修改用户"/>
+                        <property name="updatable" value="false"/>
+                    </bean>
+                </entry>
+                <entry key="lastModifiedDate">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="104"/>
+                        <property name="cname" value="最后修改时间"/>
+                        <property name="updatable" value="false"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+
+</beans>

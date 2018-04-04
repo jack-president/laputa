@@ -1,0 +1,48 @@
+[
+  {
+    "sysOperation": {
+      "cname": "Hi菜单",
+      "code": "OPERATION_GENERATE_SYSHELLOMENU",
+      "prefixUrl": "/generate/syshellomenu/*",
+      "descript": "Hi菜单操作"
+    },
+    "childSysOperation": [
+      {
+        "cname": "查看列表",
+        "code": "OPERATION_GENERATE_SYSHELLOMENU_LIST",
+        "prefixUrl": "/generate/syshellomenu/list",
+        "descript": ""
+      },
+      {
+        "cname": "全量读取",
+        "code": "OPERATION_GENERATE_SYSHELLOMENU_READEAGER",
+        "prefixUrl": "/generate/syshellomenu/readEager",
+        "descript": ""
+      },
+      {
+        "cname": "数据源读取",
+        "code": "OPERATION_GENERATE_SYSHELLOMENU_READDATASOURCE",
+        "prefixUrl": "/generate/syshellomenu/readDataSource",
+        "descript": ""
+      },
+      {
+        "cname": "新增",
+        "code": "OPERATION_GENERATE_SYSHELLOMENU_CREATE",
+        "prefixUrl": "/generate/syshellomenu/create",
+        "descript": ""
+      },
+      {
+        "cname": "删除",
+        "code": "OPERATION_GENERATE_SYSHELLOMENU_DESTORY",
+        "prefixUrl": "/generate/syshellomenu/destory",
+        "descript": ""
+      },
+      {
+        "cname": "更新",
+        "code": "OPERATION_GENERATE_SYSHELLOMENU_UPDATE",
+        "prefixUrl": "/generate/syshellomenu/update",
+        "descript": ""
+      }
+    ]
+  }
+]

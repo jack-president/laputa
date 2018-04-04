@@ -1,0 +1,150 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.laputa</groupId>
+        <artifactId>laputa-foundation-rbac</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>laputa-foundation-rbac-manager-web</artifactId>
+    <packaging>war</packaging>
+
+    <!-- 项目属性 -->
+    <properties>
+        <!--<argLine>-Dfile.encoding=UTF-8</argLine>-->
+    </properties>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.laputa</groupId>
+            <artifactId>laputa-foundation-rbac-service-entity</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.laputa</groupId>
+            <artifactId>laputa-foundation-rbac-service-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+
+        <!--<dependency>-->
+            <!--<groupId>com.laputa</groupId>-->
+            <!--<artifactId>laputa-foundation-web</artifactId>-->
+            <!--<version>${project.parent.version}</version>-->
+            <!--<type>war</type>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>com.laputa</groupId>
+            <artifactId>laputa-foundation-web-kendo</artifactId>
+            <version>${project.parent.version}</version>
+            <type>war</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.laputa</groupId>
+            <artifactId>laputa-foundation-web-generate</artifactId>
+            <version>${project.parent.version}</version>
+            <type>jar</type>
+            <classifier>classes</classifier>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.laputa</groupId>
+            <artifactId>laputa-foundation-web</artifactId>
+            <version>${project.parent.version}</version>
+            <type>jar</type>
+            <classifier>classes</classifier>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.laputa</groupId>
+            <artifactId>laputa-foundation-web-kendo</artifactId>
+            <version>${project.parent.version}</version>
+            <type>jar</type>
+            <classifier>classes</classifier>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.laputa</groupId>
+            <artifactId>laputa-foundation-configurer</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.laputa</groupId>
+            <artifactId>laputa-foundation-persistence</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.laputa</groupId>
+            <artifactId>laputa-foundation-test</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <!-- web项目重用插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <warSourceDirectory>src/main/webapp</warSourceDirectory>
+                    <attachClasses>true</attachClasses>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <configuration>
+                    <webAppSourceDirectory>src/main/webapp</webAppSourceDirectory>
+                    <stopKey>stop</stopKey>
+                    <stopPort>5551</stopPort>
+                    <scanIntervalSeconds>2</scanIntervalSeconds>
+                    <webAppConfig>
+                        <contextPath>/</contextPath>
+                    </webAppConfig>
+                    <scanIntervalSeconds>0</scanIntervalSeconds>
+                    <httpConnector>
+                        <port>7000</port>
+                    </httpConnector>
+                </configuration>
+            </plugin>
+
+
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,2 @@
+com.laputa.foundation.spring.config.LaputaSpringConfigAutoLoad=\
+com.laputa.foundation.web.config.LaputaServletConfig

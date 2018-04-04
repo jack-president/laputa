@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+    <bean class="com.laputa.foundation.web.generate.annotae.AnnotaeEntity">
+        <property name="name" value="Hi菜单"/>
+        <property name="clazz" value="com.laputa.foundation.web.generate.entity.SysHelloMenu"/>
+        <property name="descript" value="Hi菜单"/>
+        <property name="fieldsAnnotaeMap">
+            <map>
+                <entry key="id">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="0"/>
+                        <property name="cname" value="主键"/>
+                    </bean>
+                </entry>
+                <entry key="cname">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="1"/>
+                        <property name="cname" value="名字"/>
+                    </bean>
+                </entry>
+
+                <entry key="code">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="2"/>
+                        <property name="cname" value="编码"/>
+                    </bean>
+                </entry>
+
+                <entry key="iconClass">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="3"/>
+                        <property name="cname" value="图标"/>
+                    </bean>
+                </entry>
+
+                <entry key="parent">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="4"/>
+                        <property name="cname" value="父菜单"/>
+                    </bean>
+                </entry>
+
+                <entry key="children">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="5"/>
+                        <property name="cname" value="子菜单"/>
+                    </bean>
+                </entry>
+                <entry key="belongSysHelloPermissionCollection">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="6"/>
+                        <property name="cname" value="所属权限"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+</beans>

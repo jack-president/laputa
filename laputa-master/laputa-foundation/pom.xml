@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.laputa</groupId>
+        <artifactId>laputa-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+
+    <artifactId>laputa-foundation</artifactId>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+    <description>开源项目通用</description>
+
+    <modules>
+        <module>laputa-foundation-common</module>
+        <module>laputa-foundation-configurer</module>
+        <module>laputa-foundation-elasticsearch</module>
+        <module>laputa-foundation-spring</module>
+        <module>laputa-foundation-logging</module>
+        <module>laputa-foundation-persistence</module>
+        <module>laputa-foundation-app</module>
+        <module>laputa-foundation-dubbo</module>
+        <module>laputa-foundation-rbac</module>
+        <module>laputa-foundation-web</module>
+        <module>laputa-foundation-web-kendo</module>
+        <module>laputa-foundation-web-security</module>
+        <module>laputa-foundation-web-ueditor</module>
+        <module>laputa-foundation-web-zookeeper</module>
+        <module>laputa-foundation-web-generate</module>
+        <!--<module>laputa-foundation-web-rbac</module>-->
+        <module>laputa-foundation-test</module>
+    </modules>
+
+
+</project>

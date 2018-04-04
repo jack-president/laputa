@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Base logback configuration provided for compatibility with Spring Boot 1.1
+-->
+
+<included>
+	<property resource="laputa-config/sys_config.properties" />
+	<property name="LOG_PATH" value="${laputa.log.path}"/>
+	<property name="APP_NAME" value="${laputa.app.name}"/>
+	<include resource="com/laputa/foundation/logging/logback/defaults.xml" />
+	<property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/${APP_NAME}}"/>
+	<include resource="com/laputa/foundation/logging/logback/console-appender.xml" />
+	<include resource="com/laputa/foundation/logging/logback/file-appender.xml" />
+	<!--<root level="INFO">-->
+		<!--<appender-ref ref="CONSOLE" />-->
+		<!--<appender-ref ref="FILE" />-->
+	<!--</root>-->
+</included>

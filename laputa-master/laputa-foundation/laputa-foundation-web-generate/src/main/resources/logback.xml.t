@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true">
+    <include resource="com/laputa/foundation/logging/logback/base.xml"/>
+
+    <logger name="com.laputa.foundation.web" level="DEBUG"/>
+
+
+    <logger name="com.laputa.foundation" level="WARN"/>
+    <logger name="org.hibernate" level="WARN"/>
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
+    <logger name="omjp" level="WARN"/>
+    <logger name="oejpw" level="WARN"/>
+    <logger name="org.apache.catalina.startup.DigesterFactory" level="OFF"/>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>

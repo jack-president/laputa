@@ -1,0 +1,48 @@
+[
+  {
+    "sysOperation": {
+      "cname": "微信公众号基础配置",
+      "code": "OPERATION_WEIXIN_WEIXINBASECONFIG",
+      "prefixUrl": "/weixin/weixinbaseconfig/*",
+      "descript": "微信公众号基础配置操作"
+    },
+    "childSysOperation": [
+      {
+        "cname": "查看列表",
+        "code": "OPERATION_WEIXIN_WEIXINBASECONFIG_LIST",
+        "prefixUrl": "/weixin/weixinbaseconfig/list",
+        "descript": ""
+      },
+      {
+        "cname": "全量读取",
+        "code": "OPERATION_WEIXIN_WEIXINBASECONFIG_READEAGER",
+        "prefixUrl": "/weixin/weixinbaseconfig/readEager",
+        "descript": ""
+      },
+      {
+        "cname": "数据源读取",
+        "code": "OPERATION_WEIXIN_WEIXINBASECONFIG_READDATASOURCE",
+        "prefixUrl": "/weixin/weixinbaseconfig/readDataSource",
+        "descript": ""
+      },
+      {
+        "cname": "新增",
+        "code": "OPERATION_WEIXIN_WEIXINBASECONFIG_CREATE",
+        "prefixUrl": "/weixin/weixinbaseconfig/create",
+        "descript": ""
+      },
+      {
+        "cname": "删除",
+        "code": "OPERATION_WEIXIN_WEIXINBASECONFIG_DESTORY",
+        "prefixUrl": "/weixin/weixinbaseconfig/destory",
+        "descript": ""
+      },
+      {
+        "cname": "更新",
+        "code": "OPERATION_WEIXIN_WEIXINBASECONFIG_UPDATE",
+        "prefixUrl": "/weixin/weixinbaseconfig/update",
+        "descript": ""
+      }
+    ]
+  }
+]
