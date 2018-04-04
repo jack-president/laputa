@@ -1,0 +1,23 @@
+.k-laputa-treeview-checkboxes .k-sprite {
+    background-image: url("../content/coloricons-sprite.png");
+}
+
+.k-laputa-treeview-checkboxes-rootfolder {
+    background-position: 0 0;
+}
+
+.k-laputa-treeview-checkboxes-folder {
+    background-position: 0 -16px;
+}
+
+.k-laputa-treeview-checkboxes-pdf {
+    background-position: 0 -32px;
+}
+
+.k-laputa-treeview-checkboxes-html {
+    background-position: 0 -48px;
+}
+
+.k-laputa-treeview-checkboxes-image {
+    background-position: 0 -64px;
+}

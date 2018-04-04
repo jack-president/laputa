@@ -1,0 +1,48 @@
+[
+  {
+    "sysOperation": {
+      "cname": "角色",
+      "code": "OPERATION_RBAC_SYSROLE",
+      "prefixUrl": "/rbac/sysrole/*",
+      "descript": "角色操作"
+    },
+    "childSysOperation": [
+      {
+        "cname": "查看列表",
+        "code": "OPERATION_RBAC_SYSROLE_LIST",
+        "prefixUrl": "/rbac/sysrole/list",
+        "descript": ""
+      },
+      {
+        "cname": "全量读取",
+        "code": "OPERATION_RBAC_SYSROLE_READEAGER",
+        "prefixUrl": "/rbac/sysrole/readEager",
+        "descript": ""
+      },
+      {
+        "cname": "数据源读取",
+        "code": "OPERATION_RBAC_SYSROLE_READDATASOURCE",
+        "prefixUrl": "/rbac/sysrole/readDataSource",
+        "descript": ""
+      },
+      {
+        "cname": "新增",
+        "code": "OPERATION_RBAC_SYSROLE_CREATE",
+        "prefixUrl": "/rbac/sysrole/create",
+        "descript": ""
+      },
+      {
+        "cname": "删除",
+        "code": "OPERATION_RBAC_SYSROLE_DESTORY",
+        "prefixUrl": "/rbac/sysrole/destory",
+        "descript": ""
+      },
+      {
+        "cname": "更新",
+        "code": "OPERATION_RBAC_SYSROLE_UPDATE",
+        "prefixUrl": "/rbac/sysrole/update",
+        "descript": ""
+      }
+    ]
+  }
+]

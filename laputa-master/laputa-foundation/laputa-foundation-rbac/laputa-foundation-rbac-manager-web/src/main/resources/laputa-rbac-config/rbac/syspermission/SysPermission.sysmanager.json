@@ -1,0 +1,23 @@
+[
+  {
+    "sysPermission": {
+      "cname": "用户组管理",
+      "code": "PERMISSION_RBAC_SYSUSERGROUP"
+    },
+    "sysOperationList": [
+      "OPERATION_RBAC_INDEX",
+      "OPERATION_RBAC_HOME",
+      "OPERATION_RBAC_SYSELEMENT",
+      "OPERATION_RBAC_SYSFILE",
+      "OPERATION_RBAC_SYSMENU",
+      "OPERATION_RBAC_SYSOPERATION",
+      "OPERATION_RBAC_SYSPERMISSION",
+      "OPERATION_RBAC_SYSROLE",
+      "OPERATION_RBAC_SYSUSER",
+      "OPERATION_RBAC_SYSUSERGROUP"
+    ],
+    "sysMenuList": [
+      "SYSMENU_RBAC_SYSTEM_MANAGER"
+    ]
+  }
+]

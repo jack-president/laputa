@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true">
+    <include resource="com/laputa/foundation/logging/logback/base.xml"/>
+
+    <logger name="com.laputa.foundation" level="DEBUG"/>
+
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>

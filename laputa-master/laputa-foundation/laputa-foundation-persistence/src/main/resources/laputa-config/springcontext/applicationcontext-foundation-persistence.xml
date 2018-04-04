@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders">
+            <value>true</value>
+        </property>
+        <property name="locations">
+            <list>
+                <value>classpath*:/laputa-config/laputa-persistence-default.properties</value>
+                <value>classpath:/laputa-config/sys_config.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="laputaDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close">
+        <property name="driverClass">
+            <value>${DB_CONN_CLASS}</value>
+        </property>
+        <property name="jdbcUrl">
+            <value>${DB_CONN}</value>
+        </property>
+        <property name="user">
+            <value>${DB_USERNAME}</value>
+        </property>
+        <property name="password">
+            <value>${DB_PASSWORD}</value>
+        </property>
+        <property name="minPoolSize">
+            <value>${MINPOOLSIZE}</value>
+        </property>
+        <property name="maxPoolSize">
+            <value>30</value>
+        </property>
+        <property name="initialPoolSize">
+            <value>10</value>
+        </property>
+        <property name="maxIdleTime">
+            <value>60</value>
+        </property>
+        <property name="acquireIncrement">
+            <value>7</value>
+        </property>
+        <property name="maxStatements">
+            <value>0</value>
+        </property>
+        <property name="idleConnectionTestPeriod">
+            <value>60</value>
+        </property>
+        <property name="acquireRetryAttempts">
+            <value>30</value>
+        </property>
+        <property name="breakAfterAcquireFailure">
+            <value>true</value>
+        </property>
+        <property name="testConnectionOnCheckout">
+            <value>false</value>
+        </property>
+    </bean>
+
+    <!-- 持久化实现类 -->
+    <!--<bean id="persistenceProvider" class="org.hibernate.ejb.HibernatePersistence" />-->
+    <bean id="persistenceProvider" class=" org.hibernate.jpa.HibernatePersistenceProvider"/>
+
+    <!-- JPA特定属性配置 -->
+    <bean id="laputaHibernateJpaVendorAdapter"
+          class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect"/>
+        <property name="showSql" value="false"/>
+        <property name="generateDdl" value="true"/>
+    </bean>
+
+    <!--高级特性配置-->
+    <bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+
+    <!-- Jpa Entity Manager 配置 -->
+    <bean id="laputaEntityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="laputaDataSource"/>
+        <property name="packagesToScan" value="com.laputa.*"/>
+        <property name="persistenceProvider" ref="persistenceProvider"/>
+        <property name="jpaVendorAdapter" ref="laputaHibernateJpaVendorAdapter"/>
+        <property name="jpaDialect" ref="jpaDialect"/>
+        <!-- 二级/共享 缓存未研究透彻 暂时不启用 -->
+        <property name="sharedCacheMode" value="NONE"/>
+        <!-- jpaProperties javax.persistence.sharedCache.mode -->
+    </bean>
+
+
+    <!-- 事务管理器配置, Jpa单数据源事务 -->
+    <bean id="laputaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="laputaEntityManagerFactory"/>
+    </bean>
+
+    <!-- 注解方式配置事物 -->
+    <tx:annotation-driven transaction-manager="laputaTransactionManager"/>
+
+
+    <!-- Spring Data Jpa配置, 扫描base-package下所有继承于Repository<T,ID>的接口 -->
+    <jpa:repositories base-package="com.laputa.*" transaction-manager-ref="laputaTransactionManager"
+                      entity-manager-factory-ref="laputaEntityManagerFactory"/>
+
+
+    <!--自动审计相关 通过寻找 com.laputa.foundation.persistence.audit.LaputaAuditorAware 实现 -->
+    <bean id="defaultAuditorAware" class="com.laputa.foundation.persistence.audit.DefaultAuditorAware"/>
+
+    <jpa:auditing auditor-aware-ref="defaultAuditorAware"/>
+
+</beans>

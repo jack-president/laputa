@@ -1,0 +1,18 @@
+[
+  {
+    "sysOperation": {
+      "cname": "主页",
+      "code": "OPERATION_RBAC_INDEX",
+      "prefixUrl": "/index",
+      "descript": "主页"
+    }
+  },
+  {
+    "sysOperation": {
+      "cname": "home",
+      "code": "OPERATION_RBAC_HOME",
+      "prefixUrl": "/home",
+      "descript": "home"
+    }
+  }
+]

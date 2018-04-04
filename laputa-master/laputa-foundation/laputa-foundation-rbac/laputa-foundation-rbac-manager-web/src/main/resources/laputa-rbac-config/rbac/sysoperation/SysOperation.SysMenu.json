@@ -1,0 +1,48 @@
+[
+  {
+    "sysOperation": {
+      "cname": "菜单",
+      "code": "OPERATION_RBAC_SYSMENU",
+      "prefixUrl": "/rbac/sysmenu/*",
+      "descript": "菜单操作"
+    },
+    "childSysOperation": [
+      {
+        "cname": "查看列表",
+        "code": "OPERATION_RBAC_SYSMENU_LIST",
+        "prefixUrl": "/rbac/sysmenu/list",
+        "descript": ""
+      },
+      {
+        "cname": "全量读取",
+        "code": "OPERATION_RBAC_SYSMENU_READEAGER",
+        "prefixUrl": "/rbac/sysmenu/readEager",
+        "descript": ""
+      },
+      {
+        "cname": "数据源读取",
+        "code": "OPERATION_RBAC_SYSMENU_READDATASOURCE",
+        "prefixUrl": "/rbac/sysmenu/readDataSource",
+        "descript": ""
+      },
+      {
+        "cname": "新增",
+        "code": "OPERATION_RBAC_SYSMENU_CREATE",
+        "prefixUrl": "/rbac/sysmenu/create",
+        "descript": ""
+      },
+      {
+        "cname": "删除",
+        "code": "OPERATION_RBAC_SYSMENU_DESTORY",
+        "prefixUrl": "/rbac/sysmenu/destory",
+        "descript": ""
+      },
+      {
+        "cname": "更新",
+        "code": "OPERATION_RBAC_SYSMENU_UPDATE",
+        "prefixUrl": "/rbac/sysmenu/update",
+        "descript": ""
+      }
+    ]
+  }
+]

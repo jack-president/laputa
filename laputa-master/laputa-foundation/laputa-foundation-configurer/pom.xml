@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.laputa</groupId>
+        <artifactId>laputa-foundation</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>laputa-foundation-configurer</artifactId>
+    <packaging>jar</packaging>
+
+    <description>移植修改的 http://www.cnblogs.com/xuxueli/ XXL-CONF, 根据 Laputa框架修改了部分功能</description>
+
+    <!-- 项目属性 -->
+    <properties>
+        <curator_version>2.12.0</curator_version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.laputa</groupId>
+            <artifactId>laputa-foundation-spring</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.laputa</groupId>
+            <artifactId>laputa-foundation-logging</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>${curator_version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+            <version>${curator_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/main/java/</sourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
+    </build>
+
+</project>

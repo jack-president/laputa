@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="laputaConfigurer" class="com.laputa.foundation.configurer.LaputaConfigurer" factory-method="getInstance">
+        <property name="ignoreUnresolvablePlaceholders">
+            <value>true</value>
+        </property>
+        <property name="localOverride">
+            <value>true</value>
+        </property>
+        <property name="order" value="#{T(org.springframework.core.Ordered).HIGHEST_PRECEDENCE}" />
+        <property name="locations">
+            <list>
+                <value>classpath:/laputa-config/*.properties</value>
+                <value>classpath:/laputa-config/sys_config.properties</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>

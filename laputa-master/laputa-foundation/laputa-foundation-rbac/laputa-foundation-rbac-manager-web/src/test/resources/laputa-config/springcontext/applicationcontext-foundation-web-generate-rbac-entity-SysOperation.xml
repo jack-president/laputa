@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean class="com.laputa.foundation.web.generate.annotae.AnnotaeEntity">
+        <property name="name" value="功能操作"/>
+        <property name="clazz" value="com.laputa.foundation.web.rbac.entity.SysOperation"/>
+        <property name="descript" value="功能操作"/>
+        <property name="fieldsAnnotaeMap">
+            <map>
+                <entry key="id">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="0"/>
+                        <property name="cname" value="主键"/>
+                    </bean>
+                </entry>
+                <entry key="cname">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="1"/>
+                        <property name="cname" value="名称"/>
+                    </bean>
+                </entry>
+                <entry key="code">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="2"/>
+                        <property name="cname" value="编码"/>
+                    </bean>
+                </entry>
+                <entry key="descript">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="3"/>
+                        <property name="cname" value="描述"/>
+                    </bean>
+                </entry>
+
+                <entry key="prefixUrl">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="4"/>
+                        <property name="cname" value="拦截URL前缀"/>
+                    </bean>
+                </entry>
+
+
+                <entry key="parent">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="5"/>
+                        <property name="cname" value="父操作"/>
+                    </bean>
+                </entry>
+
+                <entry key="children">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="6"/>
+                        <property name="cname" value="子操作"/>
+                    </bean>
+                </entry>
+
+                <entry key="belongtoSysPermissionCollection">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="7"/>
+                        <property name="cname" value="所属权限"/>
+                    </bean>
+                </entry>
+
+
+                <entry key="createdBy">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="101"/>
+                        <property name="cname" value="创建用户"/>
+                        <property name="updatable" value="false"/>
+                    </bean>
+                </entry>
+                <entry key="createdDate">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="102"/>
+                        <property name="cname" value="创建时间"/>
+                        <property name="updatable" value="false"/>
+                    </bean>
+                </entry>
+                <entry key="lastModifiedBy">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="103"/>
+                        <property name="cname" value="最后修改用户"/>
+                        <property name="updatable" value="false"/>
+                    </bean>
+                </entry>
+                <entry key="lastModifiedDate">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="104"/>
+                        <property name="cname" value="最后修改时间"/>
+                        <property name="updatable" value="false"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+
+</beans>

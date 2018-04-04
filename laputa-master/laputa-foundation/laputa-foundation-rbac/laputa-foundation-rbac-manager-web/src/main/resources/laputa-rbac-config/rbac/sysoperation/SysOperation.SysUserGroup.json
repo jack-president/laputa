@@ -1,0 +1,48 @@
+[
+  {
+    "sysOperation": {
+      "cname": "用户组",
+      "code": "OPERATION_RBAC_SYSUSERGROUP",
+      "prefixUrl": "/rbac/sysusergroup/*",
+      "descript": "用户组操作"
+    },
+    "childSysOperation": [
+      {
+        "cname": "查看列表",
+        "code": "OPERATION_RBAC_SYSUSERGROUP_LIST",
+        "prefixUrl": "/rbac/sysusergroup/list",
+        "descript": ""
+      },
+      {
+        "cname": "全量读取",
+        "code": "OPERATION_RBAC_SYSUSERGROUP_READEAGER",
+        "prefixUrl": "/rbac/sysusergroup/readEager",
+        "descript": ""
+      },
+      {
+        "cname": "数据源读取",
+        "code": "OPERATION_RBAC_SYSUSERGROUP_READDATASOURCE",
+        "prefixUrl": "/rbac/sysusergroup/readDataSource",
+        "descript": ""
+      },
+      {
+        "cname": "新增",
+        "code": "OPERATION_RBAC_SYSUSERGROUP_CREATE",
+        "prefixUrl": "/rbac/sysusergroup/create",
+        "descript": ""
+      },
+      {
+        "cname": "删除",
+        "code": "OPERATION_RBAC_SYSUSERGROUP_DESTORY",
+        "prefixUrl": "/rbac/sysusergroup/destory",
+        "descript": ""
+      },
+      {
+        "cname": "更新",
+        "code": "OPERATION_RBAC_SYSUSERGROUP_UPDATE",
+        "prefixUrl": "/rbac/sysusergroup/update",
+        "descript": ""
+      }
+    ]
+  }
+]

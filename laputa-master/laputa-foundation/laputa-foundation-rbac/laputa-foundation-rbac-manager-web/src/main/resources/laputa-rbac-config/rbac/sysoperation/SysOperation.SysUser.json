@@ -1,0 +1,48 @@
+[
+  {
+    "sysOperation": {
+      "cname": "用户",
+      "code": "OPERATION_RBAC_SYSUSER",
+      "prefixUrl": "/rbac/sysuser/*",
+      "descript": "用户操作"
+    },
+    "childSysOperation": [
+      {
+        "cname": "查看列表",
+        "code": "OPERATION_RBAC_SYSUSER_LIST",
+        "prefixUrl": "/rbac/sysuser/list",
+        "descript": ""
+      },
+      {
+        "cname": "全量读取",
+        "code": "OPERATION_RBAC_SYSUSER_READEAGER",
+        "prefixUrl": "/rbac/sysuser/readEager",
+        "descript": ""
+      },
+      {
+        "cname": "数据源读取",
+        "code": "OPERATION_RBAC_SYSUSER_READDATASOURCE",
+        "prefixUrl": "/rbac/sysuser/readDataSource",
+        "descript": ""
+      },
+      {
+        "cname": "新增",
+        "code": "OPERATION_RBAC_SYSUSER_CREATE",
+        "prefixUrl": "/rbac/sysuser/create",
+        "descript": ""
+      },
+      {
+        "cname": "删除",
+        "code": "OPERATION_RBAC_SYSUSER_DESTORY",
+        "prefixUrl": "/rbac/sysuser/destory",
+        "descript": ""
+      },
+      {
+        "cname": "更新",
+        "code": "OPERATION_RBAC_SYSUSER_UPDATE",
+        "prefixUrl": "/rbac/sysuser/update",
+        "descript": ""
+      }
+    ]
+  }
+]

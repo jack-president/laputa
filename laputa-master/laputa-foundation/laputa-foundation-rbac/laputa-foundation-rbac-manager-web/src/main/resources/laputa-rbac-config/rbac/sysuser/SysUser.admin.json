@@ -1,0 +1,13 @@
+[
+  {
+    "sysUser": {
+      "cname": "系统管理员",
+      "username": "admin",
+      "password": "admin",
+      "locked": false
+    },
+    "sysRoleList": [
+      "ROLE_RBAC_ROOT"
+    ]
+  }
+]

@@ -1,0 +1,97 @@
+[
+  {
+    "sysMenu": {
+      "cname": "系统管理",
+      "code": "SYSMENU_RBAC_SYSTEM_MANAGER",
+      "iconClass": "laptop",
+      "resources": "#",
+      "descript": "",
+      "orderValue": 1
+    },
+    "childSysMenuModelList": [
+      {
+        "sysMenu": {
+          "cname": "权限",
+          "code": "SYSMENU_RBAC_SYSTEM_MANAGER_RBAC",
+          "iconClass": "gavel",
+          "resources": "#",
+          "descript": "",
+          "orderValue": 1
+        },
+        "childSysMenuModelList": [
+          {
+            "sysMenu": {
+              "cname": "用户管理",
+              "code": "SYSMENU_RBAC_SYSTEM_MANAGER_RBAC_USER",
+              "iconClass": "",
+              "resources": "/rbac/sysuser/list",
+              "descript": "用户管理",
+              "orderValue": 1
+            }
+          },
+          {
+            "sysMenu": {
+              "cname": "部门管理",
+              "code": "SYSMENU_RBAC_SYSTEM_MANAGER_RBAC_USERGROUP",
+              "iconClass": "",
+              "resources": "/rbac/sysusergroup/treeList",
+              "descript": "菜单管理",
+              "orderValue": 1
+            }
+          },
+          {
+            "sysMenu": {
+              "cname": "角色管理",
+              "code": "SYSMENU_RBAC_SYSTEM_MANAGER_RBAC_ROLE",
+              "iconClass": "",
+              "resources": "/rbac/sysrole/list",
+              "descript": "角色管理",
+              "orderValue": 1
+            }
+          },
+          {
+            "sysMenu": {
+              "cname": "权限管理",
+              "code": "SYSMENU_RBAC_SYSTEM_MANAGER_RBAC_PERMISSION",
+              "iconClass": "",
+              "resources": "/rbac/syspermission/list",
+              "descript": "角色管理",
+              "orderValue": 1
+            }
+          }
+        ,
+          {
+            "sysMenu": {
+              "cname": "操作管理",
+              "code": "SYSMENU_RBAC_SYSTEM_MANAGER_RBAC_OPERATION",
+              "iconClass": "",
+              "resources": "/rbac/sysoperation/treeList",
+              "descript": "操作管理",
+              "orderValue": 1
+            }
+          },
+          {
+            "sysMenu": {
+              "cname": "菜单管理",
+              "code": "SYSMENU_RBAC_SYSTEM_MANAGER_RBAC_MENU",
+              "iconClass": "",
+              "resources": "/rbac/sysmenu/treeList",
+              "descript": "菜单管理",
+              "orderValue": 1
+            }
+          },
+          {
+            "sysMenu": {
+              "cname": "文件管理",
+              "code": "SYSMENU_RBAC_SYSTEM_MANAGER_RBAC_FILE",
+              "iconClass": "",
+              "resources": "/rbac/sysfile/list",
+              "descript": "文件管理",
+              "orderValue": 1
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

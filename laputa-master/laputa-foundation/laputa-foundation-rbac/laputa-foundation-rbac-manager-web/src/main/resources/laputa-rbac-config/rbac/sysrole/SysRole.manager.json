@@ -1,0 +1,13 @@
+[
+  {
+    "sysRole": {
+      "cname": "系统管理员",
+      "code": "ROLE_RBAC_ROOT",
+      "descript": "系统管理者",
+      "inverted": false
+    },
+    "permissionList": [
+      "PERMISSION_RBAC_SYSUSERGROUP"
+    ]
+  }
+]

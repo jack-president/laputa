@@ -1,0 +1,48 @@
+[
+  {
+    "sysOperation": {
+      "cname": "系统元素",
+      "code": "OPERATION_RBAC_SYSELEMENT",
+      "prefixUrl": "/rbac/syselement/*",
+      "descript": "系统元素操作"
+    },
+    "childSysOperation": [
+      {
+        "cname": "查看列表",
+        "code": "OPERATION_RBAC_SYSELEMENT_LIST",
+        "prefixUrl": "/rbac/syselement/list",
+        "descript": ""
+      },
+      {
+        "cname": "全量读取",
+        "code": "OPERATION_RBAC_SYSELEMENT_READEAGER",
+        "prefixUrl": "/rbac/syselement/readEager",
+        "descript": ""
+      },
+      {
+        "cname": "数据源读取",
+        "code": "OPERATION_RBAC_SYSELEMENT_READDATASOURCE",
+        "prefixUrl": "/rbac/syselement/readDataSource",
+        "descript": ""
+      },
+      {
+        "cname": "新增",
+        "code": "OPERATION_RBAC_SYSELEMENT_CREATE",
+        "prefixUrl": "/rbac/syselement/create",
+        "descript": ""
+      },
+      {
+        "cname": "删除",
+        "code": "OPERATION_RBAC_SYSELEMENT_DESTORY",
+        "prefixUrl": "/rbac/syselement/destory",
+        "descript": ""
+      },
+      {
+        "cname": "更新",
+        "code": "OPERATION_RBAC_SYSELEMENT_UPDATE",
+        "prefixUrl": "/rbac/syselement/update",
+        "descript": ""
+      }
+    ]
+  }
+]
