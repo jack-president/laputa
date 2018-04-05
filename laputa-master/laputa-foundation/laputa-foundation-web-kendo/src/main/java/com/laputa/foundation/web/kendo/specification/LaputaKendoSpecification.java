@@ -113,7 +113,7 @@ public class LaputaKendoSpecification<T extends IdEntity> implements Specificati
                 lastCap = i;
             }
         }
-        return new String[] {sp[0].substring(0, lastCap), sp[1], sp[0].substring(lastCap, sp[0].length())};
+        return new String[]{sp[0].substring(0, lastCap), sp[1], sp[0].substring(lastCap, sp[0].length())};
     }
 
     private Method takeGetMethod(Class clazz, String filedName) {
@@ -168,8 +168,8 @@ public class LaputaKendoSpecification<T extends IdEntity> implements Specificati
                         relationClazz = array[1];
                     }
                     return cb.equal(takeJoin(root, query, field).get(relationClazz.substring(0, 1).toLowerCase() +
-                                                                     relationClazz.substring(1) +
-                                                                     "Id"), Long.parseLong(value.toString()));
+                            relationClazz.substring(1) +
+                            "Id"), Long.parseLong(value.toString()));
                 }
                 return cb.equal(takeJoin(root, query, field).get("id"), Long.parseLong(value.toString()));
             }
@@ -185,7 +185,7 @@ public class LaputaKendoSpecification<T extends IdEntity> implements Specificati
                 if (value == null) {
                     return path.isNull();
                 } else {
-                    if(comparable instanceof  Date){
+                    if (comparable instanceof Date) {
                         //return cb.equal(path,"2016-12-6 15:04");
                     }
                     return cb.equal(path, comparable);
@@ -280,10 +280,10 @@ public class LaputaKendoSpecification<T extends IdEntity> implements Specificati
 
     public Pageable pageable() {
         if (this.dataSourceRequest.getPage() != null && this.dataSourceRequest.getPageSize() != null) {
-            Pageable page = new PageRequest(this.dataSourceRequest.getPage() - 1, this.dataSourceRequest.getPageSize());
+            Pageable page = PageRequest.of(this.dataSourceRequest.getPage() - 1, this.dataSourceRequest.getPageSize());
             return page;
         } else {
-            return null;
+            return Pageable.unpaged();
         }
     }
 
