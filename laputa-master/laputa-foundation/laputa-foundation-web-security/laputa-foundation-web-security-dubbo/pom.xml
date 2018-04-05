@@ -163,7 +163,7 @@
                     </webAppConfig>
                     <scanIntervalSeconds>0</scanIntervalSeconds>
                     <httpConnector>
-                        <port>7000</port>
+                        <port>5000</port>
                     </httpConnector>
                 </configuration>
             </plugin>
