@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean class="com.laputa.foundation.web.generate.annotae.AnnotaeEntity">
+        <property name="name" value="Laputa项目"/>
+        <property name="clazz" value="com.laputa.fates.web.entity.LaputaConfig"/>
+        <property name="descript" value="Laputa项目"/>
+        <property name="fieldsAnnotaeMap">
+            <map>
+                <entry key="id">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="0"/>
+                        <property name="cname" value="主键"/>
+                    </bean>
+                </entry>
+                <entry key="cname">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="1"/>
+                        <property name="cname" value="名称"/>
+                    </bean>
+                </entry>
+
+                <entry key="code">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="2"/>
+                        <property name="cname" value="编码KEY"/>
+                    </bean>
+                </entry>
+
+
+                <entry key="configValue">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="3"/>
+                        <property name="cname" value="配置值"/>
+                    </bean>
+                </entry>
+
+
+                <entry key="configHistoryList">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="4"/>
+                        <property name="cname" value="配置值历史"/>
+                    </bean>
+                </entry>
+
+
+
+                <entry key="descript">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="5"/>
+                        <property name="cname" value="描述"/>
+                    </bean>
+                </entry>
+
+                <entry key="createdBy">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="101"/>
+                        <property name="cname" value="创建用户"/>
+                        <property name="updatable" value="false"/>
+                    </bean>
+                </entry>
+                <entry key="createdDate">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="102"/>
+                        <property name="cname" value="创建时间"/>
+                        <property name="updatable" value="false"/>
+                    </bean>
+                </entry>
+                <entry key="lastModifiedBy">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="103"/>
+                        <property name="cname" value="最后修改用户"/>
+                        <property name="updatable" value="false"/>
+                    </bean>
+                </entry>
+                <entry key="lastModifiedDate">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="104"/>
+                        <property name="cname" value="最后修改时间"/>
+                        <property name="updatable" value="false"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+
+</beans>

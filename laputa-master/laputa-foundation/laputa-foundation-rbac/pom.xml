@@ -17,6 +17,7 @@
     <modules>
         <module>laputa-foundation-rbac-manager-web</module>
         <module>laputa-foundation-rbac-service-entity</module>
+        <module>laputa-foundation-rbac-service-converter</module>
         <module>laputa-foundation-rbac-service-core</module>
         <module>laputa-foundation-rbac-service</module>
         <module>laputa-foundation-rbac-service-app</module>

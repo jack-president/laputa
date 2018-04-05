@@ -34,21 +34,21 @@
               "cname": "部门管理",
               "code": "SYSMENU_RBAC_SYSTEM_MANAGER_RBAC_USERGROUP",
               "iconClass": "",
-              "resources": "/rbac/sysusergroup/treeList",
+              "resources": "/rbac/sysusergroup/list",
               "descript": "菜单管理",
               "orderValue": 1
             }
           },
-          {
-            "sysMenu": {
-              "cname": "角色管理",
-              "code": "SYSMENU_RBAC_SYSTEM_MANAGER_RBAC_ROLE",
-              "iconClass": "",
-              "resources": "/rbac/sysrole/list",
-              "descript": "角色管理",
-              "orderValue": 1
-            }
-          },
+//          {
+//            "sysMenu": {
+//              "cname": "角色管理",
+//              "code": "SYSMENU_RBAC_SYSTEM_MANAGER_RBAC_ROLE",
+//              "iconClass": "",
+//              "resources": "/rbac/sysrole/list",
+//              "descript": "角色管理",
+//              "orderValue": 1
+//            }
+//          },
           {
             "sysMenu": {
               "cname": "权限管理",

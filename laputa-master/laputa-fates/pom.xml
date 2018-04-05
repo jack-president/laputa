@@ -4,10 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.laputa</groupId>
-        <artifactId>laputa-foundation-rbac</artifactId>
+        <artifactId>laputa-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>laputa-foundation-rbac-manager-web</artifactId>
+    <artifactId>laputa-fates</artifactId>
     <packaging>war</packaging>
 
     <!-- 项目属性 -->
@@ -18,30 +18,12 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>com.laputa</groupId>
-            <artifactId>laputa-foundation-rbac-service-entity</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.laputa</groupId>
-            <artifactId>laputa-foundation-rbac-service-converter</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.laputa</groupId>
-            <artifactId>laputa-foundation-rbac-service-core</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-
 
         <!--<dependency>-->
-            <!--<groupId>com.laputa</groupId>-->
-            <!--<artifactId>laputa-foundation-web</artifactId>-->
-            <!--<version>${project.parent.version}</version>-->
-            <!--<type>war</type>-->
+        <!--<groupId>com.laputa</groupId>-->
+        <!--<artifactId>laputa-foundation-web</artifactId>-->
+        <!--<version>${project.parent.version}</version>-->
+        <!--<type>war</type>-->
         <!--</dependency>-->
 
         <dependency>
@@ -144,7 +126,7 @@
                     </webAppConfig>
                     <scanIntervalSeconds>0</scanIntervalSeconds>
                     <httpConnector>
-                        <port>7000</port>
+                        <port>4000</port>
                     </httpConnector>
                 </configuration>
             </plugin>

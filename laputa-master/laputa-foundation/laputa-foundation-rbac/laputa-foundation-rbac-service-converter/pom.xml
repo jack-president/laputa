@@ -7,7 +7,7 @@
         <artifactId>laputa-foundation-rbac</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>laputa-foundation-rbac-service</artifactId>
+    <artifactId>laputa-foundation-rbac-service-converter</artifactId>
     <packaging>jar</packaging>
 
 
@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com.laputa</groupId>
-            <artifactId>laputa-foundation-persistence</artifactId>
+            <artifactId>laputa-foundation-spring</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 
@@ -31,29 +31,20 @@
 
         <dependency>
             <groupId>com.laputa</groupId>
-            <artifactId>laputa-foundation-rbac-service-converter</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.laputa</groupId>
             <artifactId>laputa-foundation-rbac-service-core</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 
-
-        <dependency>
-            <groupId>com.laputa</groupId>
-            <artifactId>laputa-foundation-test</artifactId>
-            <version>${project.parent.version}</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
+
 
     <build>
         <sourceDirectory>src/main/java/</sourceDirectory>
         <testSourceDirectory>src/test/java</testSourceDirectory>
 
+        <plugins>
+
+        </plugins>
 
     </build>
 

@@ -19,6 +19,13 @@ laputa.dubbo.zookeeper.address=127.0.0.1:2181
 DB_CONN=jdbc:mysql://127.0.0.1:3306/laputa?useUnicode=true&characterEncoding=utf8&useSSL=false
 DB_USERNAME=root
 DB_PASSWORD=root
+
+#日志文件目录
+laputa.log.path=D:\\laputa-logs
+
+#允许无 配置中心启动,默认为false 
+laputa.cloud.enable.config.offline.start=true
+
 ```
 
 
