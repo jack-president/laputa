@@ -17,14 +17,8 @@
                         <property name="cname" value="主键"/>
                     </bean>
                 </entry>
-                <entry key="cname">
-                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
-                        <property name="indexNumber" value="1"/>
-                        <property name="cname" value="名称"/>
-                    </bean>
-                </entry>
 
-                <entry key="configList">
+                <entry key="configValue">
                     <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
                         <property name="indexNumber" value="2"/>
                         <property name="cname" value="配置值"/>

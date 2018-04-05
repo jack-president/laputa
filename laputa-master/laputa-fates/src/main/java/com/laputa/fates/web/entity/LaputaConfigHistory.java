@@ -19,7 +19,7 @@ public class LaputaConfigHistory  extends AuditingIdEntity {
     private String descript;
 
 
-    private List<LaputaConfigHistoryBelongtoRelationLaputaConfig> configList;
+    private List<LaputaConfigHistoryBelongtoRelationLaputaConfig> parentLaputaConfig;
 
     @Column(name = "config_value")
     public String getConfigValue() {
@@ -39,13 +39,12 @@ public class LaputaConfigHistory  extends AuditingIdEntity {
         this.descript = descript;
     }
 
-
     @OneToMany(mappedBy = "laputaConfigHistory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public List<LaputaConfigHistoryBelongtoRelationLaputaConfig> getConfigList() {
-        return configList;
+    public List<LaputaConfigHistoryBelongtoRelationLaputaConfig> getParentLaputaConfig() {
+        return parentLaputaConfig;
     }
 
-    public void setConfigList(List<LaputaConfigHistoryBelongtoRelationLaputaConfig> configList) {
-        this.configList = configList;
+    public void setParentLaputaConfig(List<LaputaConfigHistoryBelongtoRelationLaputaConfig> parentLaputaConfig) {
+        this.parentLaputaConfig = parentLaputaConfig;
     }
 }
