@@ -5,8 +5,9 @@ QQ 群 724851867
 
 sql : laputa-master/doc/sql/laputa-2018-04-05.sql
 
-所有项目配置文件默认位置 :  resources/laputa-config/sys_config.properties
+*所有项目配置文件默认位置 :  resources/laputa-config/sys_config.properties
 
+```html
 laputa.app.name : 程序名
 laputa.app.ver : 版本
 laputa.app.groups : 分组
@@ -18,6 +19,7 @@ laputa.dubbo.zookeeper.address=127.0.0.1:2181
 DB_CONN=jdbc:mysql://127.0.0.1:3306/laputa?useUnicode=true&characterEncoding=utf8&useSSL=false
 DB_USERNAME=root
 DB_PASSWORD=root
+```
 
 
 dubbo版 demo启动顺序:
