@@ -1,6 +1,7 @@
 package com.laputa.fates.web.entity;
 
 import com.laputa.foundation.persistence.code.CodeAbleIdEntity;
+import com.laputa.foundation.persistence.code.NameAbleIdEntity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,11 +12,26 @@ import java.util.List;
  */
 @Entity
 @Table(name = "laputa_config")
-public class LaputaConfig extends CodeAbleIdEntity {
+public class LaputaConfig extends NameAbleIdEntity {
+
+    private String code;
 
     private String configValue;
 
-    private List<LaputaConfigHistoryBelongtoRelationLaputaConfig> configHistoryList;
+    private Long parentLaputaAplicationId;
+
+    private LaputaAplication parentLaputaAplication;
+
+    private List<LaputaConfigHistory> configHistoryList;
+
+    @Column(name = "code", nullable = false)
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     @Column(name = "config_value")
     public String getConfigValue() {
@@ -27,12 +43,35 @@ public class LaputaConfig extends CodeAbleIdEntity {
     }
 
 
-    @OneToMany(mappedBy = "laputaConfig", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public List<LaputaConfigHistoryBelongtoRelationLaputaConfig> getConfigHistoryList() {
+    @Column(name = "parent_laputa_aplication_id", insertable = false, updatable = false)
+    public Long getParentLaputaAplicationId() {
+        return parentLaputaAplicationId;
+    }
+
+    public void setParentLaputaAplicationId(Long parentLaputaAplicationId) {
+        this.parentLaputaAplicationId = parentLaputaAplicationId;
+    }
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_laputa_aplication_id")
+    public LaputaAplication getParentLaputaAplication() {
+        return parentLaputaAplication;
+    }
+
+    public void setParentLaputaAplication(LaputaAplication parentLaputaAplication) {
+        this.parentLaputaAplication = parentLaputaAplication;
+    }
+
+
+    @OneToMany(mappedBy = "parentLaputaConfig", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<LaputaConfigHistory> getConfigHistoryList() {
         return configHistoryList;
     }
 
-    public void setConfigHistoryList(List<LaputaConfigHistoryBelongtoRelationLaputaConfig> configHistoryList) {
+    public void setConfigHistoryList(List<LaputaConfigHistory> configHistoryList) {
         this.configHistoryList = configHistoryList;
     }
+
+
 }

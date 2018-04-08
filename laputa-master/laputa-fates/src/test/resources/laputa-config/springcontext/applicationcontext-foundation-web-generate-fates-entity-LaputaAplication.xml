@@ -36,6 +36,15 @@
                     </bean>
                 </entry>
 
+                <entry key="configList">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="4"/>
+                        <property name="cname" value="配置"/>
+                    </bean>
+                </entry>
+
+
+
                 <entry key="createdBy">
                     <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
                         <property name="indexNumber" value="101"/>

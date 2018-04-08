@@ -197,7 +197,7 @@
                                         window.sysUserData = data;
 
                                         function cancelConfig() {
-                                            configWindow.close();
+                                            this.destroy();
                                         }
 
                                         window.configWindow =
@@ -232,6 +232,7 @@
                                                 actions: ["Maximize", "Close"],
                                                 //height: "90%",
                                                 //width: "40%",
+                                                close:cancelConfig,
                                                 modal: true,
                                                 resizable: false,
                                                 draggable: true,
@@ -241,10 +242,11 @@
                                         configWindow.open();
                                         $("#configDiv .k-grid-cancel").on("click", function () {
                                             configWindow.close();
+                                            configWindow.destroy();
                                         });
                                         $("#configDiv .k-grid-update").on("click", function () {
-                                            var pwd = $("#configDiv [name='pwd']").val();
-                                            var repeatPwd = $("#configDiv [name='repeatPwd']").val();
+                                            var pwd = $("#configDiv [name='pwd']").last().val();
+                                            var repeatPwd = $("#configDiv [name='repeatPwd']").last().val();
                                             if (pwd == null || pwd.length <= 0) {
                                                 alert("请输入密码");
                                                 return;
@@ -272,6 +274,7 @@
                                                     alert("密码修改成功");
                                                     sysUserGrid.dataSource.read();
                                                     configWindow.close();
+                                                    configWindow.destroy();
                                                 } catch (e) {
                                                 }
                                             });

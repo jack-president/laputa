@@ -4,7 +4,6 @@ import com.laputa.foundation.persistence.audit.AuditingIdEntity;
 import com.laputa.foundation.persistence.entity.IdEntity;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * 配置历史
@@ -12,14 +11,15 @@ import java.util.List;
  */
 @Entity
 @Table(name = "laputa_config_history")
-public class LaputaConfigHistory  extends AuditingIdEntity {
+public class LaputaConfigHistory extends AuditingIdEntity {
 
     private String configValue;
 
     private String descript;
 
+    private LaputaConfig parentLaputaConfig;
 
-    private List<LaputaConfigHistoryBelongtoRelationLaputaConfig> parentLaputaConfig;
+    private Long parentLaputaConfigId;
 
     @Column(name = "config_value")
     public String getConfigValue() {
@@ -39,12 +39,23 @@ public class LaputaConfigHistory  extends AuditingIdEntity {
         this.descript = descript;
     }
 
-    @OneToMany(mappedBy = "laputaConfigHistory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public List<LaputaConfigHistoryBelongtoRelationLaputaConfig> getParentLaputaConfig() {
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_laputa_config_id")
+    public LaputaConfig getParentLaputaConfig() {
         return parentLaputaConfig;
     }
 
-    public void setParentLaputaConfig(List<LaputaConfigHistoryBelongtoRelationLaputaConfig> parentLaputaConfig) {
+    public void setParentLaputaConfig(LaputaConfig parentLaputaConfig) {
         this.parentLaputaConfig = parentLaputaConfig;
+    }
+
+    @Column(name = "parent_laputa_config_id", insertable = false, updatable = false)
+    public Long getParentLaputaConfigId() {
+        return parentLaputaConfigId;
+    }
+
+    public void setParentLaputaConfigId(Long parentLaputaConfigId) {
+        this.parentLaputaConfigId = parentLaputaConfigId;
     }
 }

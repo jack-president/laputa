@@ -144,7 +144,7 @@ public class LaputaKendoSpecification<T extends IdEntity> implements Specificati
             } else if (type == float.class || type == Float.class) {
                 comparable = Float.parseFloat(value.toString());
             } else if (type == long.class || type == Long.class) {
-                comparable = Long.parseLong(value.toString());
+                comparable = Double.valueOf(value.toString()).longValue();
             } else if (type == int.class || type == Integer.class) {
                 comparable = Integer.parseInt(value.toString());
             } else if (type == short.class || type == Short.class) {

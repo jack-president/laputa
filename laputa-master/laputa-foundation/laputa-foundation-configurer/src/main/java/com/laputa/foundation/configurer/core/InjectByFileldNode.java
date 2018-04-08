@@ -1,6 +1,7 @@
 package com.laputa.foundation.configurer.core;
 
 import com.laputa.foundation.configurer.exception.LaputaConfigurerException;
+import com.laputa.foundation.configurer.util.ReflectUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.env.MutablePropertySources;
@@ -16,10 +17,12 @@ public class InjectByFileldNode extends CloudConfigBeanNode {
 
     private Field fieldItem;
 
+    private final Class injectTargetClass;
 
-    public InjectByFileldNode(String beanName, Object targetBean, Field fieldItem) {
-        super(beanName, targetBean);
+    public InjectByFileldNode(String beanName, Object targetBean, Field fieldItem, String defaultVaule) {
+        super(beanName, targetBean, defaultVaule);
         this.fieldItem = fieldItem;
+        this.injectTargetClass = ReflectUtil.analyTargetClass(fieldItem);
     }
 
     @Override
@@ -30,7 +33,7 @@ public class InjectByFileldNode extends CloudConfigBeanNode {
         }
 
         try {
-            fieldItem.set(targetBean, value);
+            fieldItem.set(targetBean, toInjectTarget(value, injectTargetClass));
         } catch (IllegalAccessException e) {
             logger.error("{0} {1} {2} 通过 Field 注入值异常", this.beanName, fieldItem.getName(), value);
             LaputaConfigurerException.ExceptionEnum.FIELD_INJECT_FAIL

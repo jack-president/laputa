@@ -1,6 +1,7 @@
 package com.laputa.foundation.configurer.core;
 
 import com.laputa.foundation.configurer.exception.LaputaConfigurerException;
+import com.laputa.foundation.configurer.util.ReflectUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanWrapper;
@@ -22,8 +23,8 @@ public class InjectByBeanWrapperNode extends CloudConfigBeanNode {
     private Field field = null;
 
 
-    public InjectByBeanWrapperNode(String beanName, Object targetBean, String property) {
-        super(beanName, targetBean);
+    public InjectByBeanWrapperNode(String beanName, Object targetBean, String property, String defaultVaule) {
+        super(beanName, targetBean, defaultVaule);
         this.property = property;
         this.beanWrapper = new BeanWrapperImpl(targetBean);
         // property descriptor
@@ -71,7 +72,7 @@ public class InjectByBeanWrapperNode extends CloudConfigBeanNode {
             }
 
             try {
-                field.set(targetBean, value);
+                field.set(targetBean, toInjectTarget(value, ReflectUtil.analyTargetClass(field)));
             } catch (Exception e) {
                 logger.error("{0} {1} {2} 通过 Field 注入值异常", this.beanName, field.getName(), value);
                 LaputaConfigurerException.ExceptionEnum.FIELD_INJECT_FAIL

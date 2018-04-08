@@ -54,7 +54,8 @@ public final class LaputaConfigurer extends PlaceholderConfigurerSupport impleme
     private static final String PATH_SEPARATOR = "/";
 
     public static final String PATH_ROOT_PREFIX = "/laputa/config";
-    public static final String GROUP_PATH_ROOT_PREFIX = PATH_ROOT_PREFIX + "/groups";
+    public static final String GROUP_PATH_PREFIX = "group-";
+    public static final String APP_CODE_CON = "-";
 
     /**
      * 云端同步类型参数 分割标记
@@ -130,7 +131,8 @@ public final class LaputaConfigurer extends PlaceholderConfigurerSupport impleme
 
     private PropertiesPropertySource localSysConfigPropertySource;
 
-    private PropertiesPropertySource cloudZookeeperPropertySource;
+    private PropertiesPropertySource cloudRootZookeeperPropertySource;
+
 
     private Properties cloudRootProperties;
 
@@ -144,7 +146,8 @@ public final class LaputaConfigurer extends PlaceholderConfigurerSupport impleme
     private boolean enableConfigOfflineStart = false;
 
     private CuratorFramework curatorZookeeperClient;
-    private String rootPath;
+
+    private volatile boolean synInit = false;
 
 
     private LaputaConfigurer() {
@@ -152,6 +155,51 @@ public final class LaputaConfigurer extends PlaceholderConfigurerSupport impleme
 
     public static LaputaConfigurer getInstance() {
         return instance;
+    }
+
+
+    private String groupCode(String group) {
+        return GROUP_PATH_PREFIX + group;
+    }
+
+    private String appCode(String appName, String appVer) {
+        return appName + APP_CODE_CON + appVer;
+    }
+
+    private String zkPath(String laputaAplicationCode) {
+        return PATH_ROOT_PREFIX + laputaAplicationCode;
+    }
+
+    public Properties getCloudConfigProperties(String laputaAplicationCode) throws Exception {
+        Properties properties = new Properties();
+        String path = zkPath(laputaAplicationCode);
+        List<String> children = this.curatorZookeeperClient.getChildren().forPath(path);
+        if (!CollectionUtils.isEmpty(children)) {
+            for (String child : children) {
+                byte[] data = this.curatorZookeeperClient.getData().forPath(path + PATH_SEPARATOR + child);
+                if (data != null && data.length > 0) {
+                    try {
+                        properties.put(child, new String(data, "UTF-8"));
+                    } catch (Exception e) {
+                        logger.error("{0}/{1} 节点数据解析异常", path, child);
+                    }
+                }
+            }
+        }
+        return properties;
+    }
+
+    public void setCloudConfigProperties(String laputaAplicationCode, String key, String value) throws Exception {
+        String path = PATH_ROOT_PREFIX + laputaAplicationCode + "/" + key;
+        Object o = this.curatorZookeeperClient.checkExists().forPath(path);
+        if (o == null) {
+            this.curatorZookeeperClient.createContainers(path);
+        }
+        if (value != null) {
+            this.curatorZookeeperClient.setData().forPath(path, value.getBytes("UTF-8"));
+        } else {
+            this.curatorZookeeperClient.delete().forPath(path);
+        }
     }
 
     /**
@@ -234,7 +282,7 @@ public final class LaputaConfigurer extends PlaceholderConfigurerSupport impleme
 
             this.appName = this.propertyResolver.getProperty(APP_NAME_KEY);
             this.appVer = this.propertyResolver.getProperty(APP_VER_KEY);
-            this.groups = StringUtils.split(this.propertyResolver.getProperty(APP_GROUPS_KEY), COMMA);
+            this.groups = StringUtils.removeDuplicateStrings(StringUtils.tokenizeToStringArray(this.propertyResolver.getProperty(APP_GROUPS_KEY), COMMA));
             this.cloudOverride = Boolean.TRUE.toString().equalsIgnoreCase(
                     this.propertyResolver.getProperty(CLOUD_OVERRIDE_KEY));
 
@@ -249,43 +297,53 @@ public final class LaputaConfigurer extends PlaceholderConfigurerSupport impleme
             }
             String zookeeperAddress = this.propertyResolver.getProperty(CLOUD_CLOUD_ZOOKEEPER_ADDRESS);
             if (StringUtils.hasLength(zookeeperAddress)) {
-                cloudRootProperties = new Properties();
-                this.cloudZookeeperPropertySource = new PropertiesPropertySource(ROOT_PROPERTYSOURCE_NAME, cloudRootProperties);
-                rootPath = toRootPath(appName, appVer);
-                rootPath = "/xxl-conf";
 
                 try {
+
+                    logger.info("加载基础配置 {}", appCode(appName, appVer));
+
                     this.curatorZookeeperClient = buildCuratorZookeeperClient(zookeeperAddress, nullValue);
-                    List<String> children = this.curatorZookeeperClient.getChildren().forPath(rootPath);
-                    if (!CollectionUtils.isEmpty(children)) {
-                        for (String child : children) {
-                            byte[] data = this.curatorZookeeperClient.getData().forPath(rootPath + PATH_SEPARATOR + child);
-                            if (data != null && data.length > 0) {
-                                try {
-                                    cloudRootProperties.put(child, new String(data, "UTF-8"));
-                                } catch (Exception e) {
-                                    logger.error("{0}/{1} 节点数据解析异常", rootPath, child);
-                                }
-                            }
-                        }
+                    if (this.curatorZookeeperClient.checkExists().forPath(zkPath(appCode(appName, appVer))) == null) {
+                        logger.info("初始化目录 {}", zkPath(appCode(appName, appVer)));
+                        this.curatorZookeeperClient.createContainers(zkPath(appCode(appName, appVer)));
                     }
+
+                    cloudRootProperties = getCloudConfigProperties(appCode(appName, appVer));
                 } catch (Exception e) {
-                    logger.error("云配置连接异常 {} {} {}", this.rootPath, zookeeperAddress, e);
+                    logger.error("云配置连接异常 {} {} {}", appCode(appName, appVer), zookeeperAddress, e);
                     if (!this.enableConfigOfflineStart) {
                         throw LaputaConfigurerException.ExceptionEnum
-                                .NORMAL_CONFIGURER_FAIL.generateException("无法链接到配置中心 {0} {1}", zookeeperAddress, rootPath);
+                                .NORMAL_CONFIGURER_FAIL.generateException("无法链接到配置中心 {0} {1}", zookeeperAddress, appCode(appName, appVer));
+                    }
+                    cloudRootProperties = new Properties();
+                }
+
+                this.cloudRootZookeeperPropertySource = new PropertiesPropertySource(ROOT_PROPERTYSOURCE_NAME, cloudRootProperties);
+
+                if (this.cloudOverride) {
+                    this.propertySources.addFirst(cloudRootZookeeperPropertySource);
+                } else {
+                    this.propertySources.addLast(cloudRootZookeeperPropertySource);
+                }
+
+
+                if (this.groups != null && this.groups.length > 0) {
+                    logger.info("加载组配置");
+                    String prevIndex = ROOT_PROPERTYSOURCE_NAME;
+                    for (String group : this.groups) {
+                        logger.info("加载组配置 {}", group);
+                        Properties groupProperties;
+                        try {
+                            groupProperties = getCloudConfigProperties(groupCode(group));
+                        } catch (Exception e) {
+                            logger.error("加载组配置 {} 异常 {}", group, e);
+                            groupProperties = new Properties();
+                        }
+                        this.propertySources.addAfter(prevIndex, new PropertiesPropertySource(groupCode(group), groupProperties));
+                        prevIndex = groupCode(group);
                     }
                 }
-
-
-                //TODO
-                if (this.cloudOverride) {
-                    this.propertySources.addFirst(cloudZookeeperPropertySource);
-                } else {
-                    this.propertySources.addLast(cloudZookeeperPropertySource);
-                }
             }
-
 
         }
 
@@ -293,9 +351,6 @@ public final class LaputaConfigurer extends PlaceholderConfigurerSupport impleme
         this.appliedPropertySources = this.propertySources;
     }
 
-    private String toRootPath(String appName, String appVer) {
-        return PATH_ROOT_PREFIX + appName + PATH_SEPARATOR + appVer;
-    }
 
     private CuratorFramework buildCuratorZookeeperClient(String zookeeperAddress, String zookeeperAuthority) {
         CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder()
@@ -526,15 +581,21 @@ public final class LaputaConfigurer extends PlaceholderConfigurerSupport impleme
         return this.appliedPropertySources;
     }
 
+    private synchronized void doSynInit(ContextRefreshedEvent event) {
+        if (synInit) {
+            logger.info("无需同步初始化 {}", event.getSource().toString());
+            return;
+        }
+        synInit = true;
 
-    @Override
-    public void onApplicationEvent(ContextRefreshedEvent event) {
+        logger.info("同步开始初始化 {}", event.getSource().toString());
 
         if (this.injectByPropertyNodePrepNodeDatas != null && this.injectByPropertyNodePrepNodeDatas.size() > 0) {
             for (PrepPropertyNodeData prepNodeData : injectByPropertyNodePrepNodeDatas) {
                 Object targetBean = prepNodeData.getBeanFactoryToProcess().getBean(prepNodeData.getBeanName());
                 ConfListenerFactory.addListener(prepNodeData.getLaputaPlaceHolder().getProperty(),
-                        new InjectByBeanWrapperNode(prepNodeData.getBeanName(), targetBean, prepNodeData.getProperty()));
+                        new InjectByBeanWrapperNode(prepNodeData.getBeanName(), targetBean,
+                                prepNodeData.getProperty(), prepNodeData.getLaputaPlaceHolder().getDefaultValue()));
             }
         }
 
@@ -542,7 +603,8 @@ public final class LaputaConfigurer extends PlaceholderConfigurerSupport impleme
             for (PrepFieldNodeData prepNodeData : injectByFileldNodePrepNodeDatas) {
                 Object targetBean = prepNodeData.getBeanFactoryToProcess().getBean(prepNodeData.getBeanName());
                 ConfListenerFactory.addListener(prepNodeData.getLaputaPlaceHolder().getProperty(),
-                        new InjectByFileldNode(prepNodeData.getBeanName(), targetBean, prepNodeData.getField()));
+                        new InjectByFileldNode(prepNodeData.getBeanName(), targetBean,
+                                prepNodeData.getField(), prepNodeData.getLaputaPlaceHolder().getDefaultValue()));
             }
         }
 
@@ -550,7 +612,8 @@ public final class LaputaConfigurer extends PlaceholderConfigurerSupport impleme
             for (PrepMethodNodeData prepNodeData : injectByMethodNodeDatas) {
                 Object targetBean = prepNodeData.getBeanFactoryToProcess().getBean(prepNodeData.getBeanName());
                 ConfListenerFactory.addListener(prepNodeData.getLaputaPlaceHolder().getProperty(),
-                        new InjectByMethodNode(prepNodeData.getBeanName(), targetBean, prepNodeData.getMethod()));
+                        new InjectByMethodNode(prepNodeData.getBeanName(), targetBean,
+                                prepNodeData.getMethod(), prepNodeData.getLaputaPlaceHolder().getDefaultValue()));
             }
         }
 
@@ -558,16 +621,39 @@ public final class LaputaConfigurer extends PlaceholderConfigurerSupport impleme
             return;
         }
 
-        logger.info("注册配置云同步 {} ", this.rootPath);
+        logger.info("注册配置云同步 {} ", zkPath(appCode(appName, appVer)));
 
-        final TreeCache rootNode = new TreeCache(this.curatorZookeeperClient, this.rootPath);
-        rootNode.getListenable().addListener(new LaputaTreeCacheListener(ROOT_PROPERTYSOURCE_NAME, this.rootPath, this.propertyResolver, getAppliedPropertySources()));
+        final TreeCache rootNode = new TreeCache(this.curatorZookeeperClient, zkPath(appCode(appName, appVer)));
+        rootNode.getListenable().addListener(new LaputaTreeCacheListener(ROOT_PROPERTYSOURCE_NAME, zkPath(appCode(appName, appVer)),
+                this.propertyResolver, getAppliedPropertySources()));
 
         try {
             rootNode.start();
         } catch (Exception e) {
-            logger.error("配置云同步异常{} {}", this.rootPath, e);
+            logger.error("配置云同步异常{} {}", zkPath(appCode(appName, appVer)), e);
         }
+
+        if (this.groups != null && this.groups.length > 0) {
+            logger.info("注册组配置云同步 ");
+            for (String group : this.groups) {
+                logger.info("注册组配置云同步 {}", group);
+                final TreeCache groupNode = new TreeCache(this.curatorZookeeperClient, zkPath(groupCode(group)));
+                groupNode.getListenable().addListener(new LaputaTreeCacheListener(groupCode(group), zkPath(groupCode(group)),
+                        this.propertyResolver, getAppliedPropertySources()));
+
+                try {
+                    groupNode.start();
+                } catch (Exception e) {
+                    logger.error("组配置云同步异常{} {}", zkPath(groupCode(group)), e);
+                }
+            }
+        }
+    }
+
+
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+        doSynInit(event);
     }
 
     private class LaputaTreeCacheListener implements TreeCacheListener {

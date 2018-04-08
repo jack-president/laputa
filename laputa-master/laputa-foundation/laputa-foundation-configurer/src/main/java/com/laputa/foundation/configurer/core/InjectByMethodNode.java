@@ -1,6 +1,7 @@
 package com.laputa.foundation.configurer.core;
 
 import com.laputa.foundation.configurer.exception.LaputaConfigurerException;
+import com.laputa.foundation.configurer.util.ReflectUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanWrapper;
@@ -19,9 +20,13 @@ public final class InjectByMethodNode extends CloudConfigBeanNode {
 
     private final Method method;
 
-    public InjectByMethodNode(String beanName, Object targetBean, Method method) {
-        super(beanName, targetBean);
+    private final Class injectTargetClass;
+
+
+    public InjectByMethodNode(String beanName, Object targetBean, Method method, String defaultVaule) {
+        super(beanName, targetBean, defaultVaule);
         this.method = method;
+        this.injectTargetClass = ReflectUtil.analyTargetClass(method);
     }
 
     @Override
@@ -33,7 +38,7 @@ public final class InjectByMethodNode extends CloudConfigBeanNode {
         }
 
         try {
-            method.invoke(targetBean, value);
+            method.invoke(targetBean, toInjectTarget(value, injectTargetClass));
         } catch (Exception e) {
             logger.error("{} {}  通过 Method 注入值异常", this.beanName, value);
             LaputaConfigurerException.ExceptionEnum.METHOD_INJECT_FAIL

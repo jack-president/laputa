@@ -16,6 +16,59 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`laputa` /*!40100 DEFAULT CHARACTER SET 
 
 USE `laputa`;
 
+/*Table structure for table `laputa_aplication` */
+
+DROP TABLE IF EXISTS `laputa_aplication`;
+
+CREATE TABLE `laputa_aplication` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(50) NOT NULL,
+  `created_date` datetime NOT NULL,
+  `last_modified_by` varchar(50) DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
+  `cname` varchar(255) NOT NULL,
+  `descript` varchar(255) DEFAULT NULL,
+  `code` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_4brn0q36g1opltc2p4y9w51je` (`code`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+/*Table structure for table `laputa_config` */
+
+DROP TABLE IF EXISTS `laputa_config`;
+
+CREATE TABLE `laputa_config` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(50) NOT NULL,
+  `created_date` datetime NOT NULL,
+  `last_modified_by` varchar(50) DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
+  `cname` varchar(255) NOT NULL,
+  `descript` text,
+  `code` varchar(255) NOT NULL,
+  `config_value` varchar(255) DEFAULT NULL,
+  `parent_laputa_aplication_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKmhvynxubac4lgx86rp9e846na` (`parent_laputa_aplication_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+
+/*Table structure for table `laputa_config_history` */
+
+DROP TABLE IF EXISTS `laputa_config_history`;
+
+CREATE TABLE `laputa_config_history` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(50) NOT NULL,
+  `created_date` datetime NOT NULL,
+  `last_modified_by` varchar(50) DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
+  `config_value` varchar(255) DEFAULT NULL,
+  `descript` varchar(255) DEFAULT NULL,
+  `parent_laputa_config_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKoilblh5bwuwjf6g9ov57nrehi` (`parent_laputa_config_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=115 DEFAULT CHARSET=utf8;
+
 /*Table structure for table `sys_element` */
 
 DROP TABLE IF EXISTS `sys_element`;
@@ -65,7 +118,7 @@ CREATE TABLE `sys_entity` (
   `table_name` varchar(255) DEFAULT NULL,
   `tree_able` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `sys_field` */
 
@@ -99,7 +152,7 @@ CREATE TABLE `sys_field` (
   PRIMARY KEY (`id`),
   KEY `FKcxs5iro3pon0qgmfqtvl0rkm8` (`relation_sys_entity_id`),
   KEY `FKi5rhbhjtw17p5va9rhmgmq4j2` (`sys_entity_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=388 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `sys_file` */
 
@@ -115,7 +168,7 @@ CREATE TABLE `sys_file` (
   `descript` varchar(255) DEFAULT NULL,
   `path` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `sys_file_belongto_relation_sys_permission` */
 
@@ -132,7 +185,7 @@ CREATE TABLE `sys_file_belongto_relation_sys_permission` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_sys_file_id_union_sys_permission_id` (`sys_file_id`,`sys_permission_id`),
   KEY `FK9g8lgn6ahx4ci7ygua5c77rds` (`sys_permission_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `sys_hello_date` */
 
@@ -227,7 +280,7 @@ CREATE TABLE `sys_menu` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_tq5314uwm3dsbq5mjd8mwdg2f` (`code`),
   KEY `FK2jrf4gb0gjqi8882gxytpxnhe` (`parent_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `sys_menu_belongto_relation_sys_permission` */
 
@@ -244,7 +297,7 @@ CREATE TABLE `sys_menu_belongto_relation_sys_permission` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_sys_menu_id_union_sys_permission_id` (`sys_menu_id`,`sys_permission_id`),
   KEY `FK9vkp690bi4m1kmtltrbhmc6fl` (`sys_permission_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `sys_operation` */
 
@@ -264,7 +317,7 @@ CREATE TABLE `sys_operation` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_6agwic08sqje8pdur2ltvllr6` (`code`),
   KEY `FKpna2tchew81vroamv1fw6ne91` (`parent_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=132 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `sys_operation_belongto_relation_sys_permission` */
 
@@ -281,7 +334,7 @@ CREATE TABLE `sys_operation_belongto_relation_sys_permission` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_sys_operation_id_union_sys_permission_id` (`sys_operation_id`,`sys_permission_id`),
   KEY `FK3bkhrrfbtxbn4lniyttfd72y5` (`sys_permission_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=184 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `sys_permission` */
 
@@ -298,7 +351,7 @@ CREATE TABLE `sys_permission` (
   `code` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_2vm98en2ouht0v15fvef2whp4` (`code`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `sys_permission_belongto_relation_sys_role` */
 
@@ -315,7 +368,7 @@ CREATE TABLE `sys_permission_belongto_relation_sys_role` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_sys_permission_id_union_sys_role_id` (`sys_permission_id`,`sys_role_id`),
   KEY `FKjdc0kgo4xauu5c44h4yqrn5n2` (`sys_role_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `sys_role` */
 
@@ -335,7 +388,7 @@ CREATE TABLE `sys_role` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_plpigyqwsqfn7mn66npgf9ftp` (`code`),
   KEY `FK3bea05ca9iwbgsf7fdre8ixnk` (`parent_sys_user_group_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `sys_user` */
 
@@ -354,7 +407,7 @@ CREATE TABLE `sys_user` (
   `username` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_51bvuyvihefoh4kp5syh2jpi4` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `sys_user_belongto_relation_sys_role` */
 
@@ -371,7 +424,7 @@ CREATE TABLE `sys_user_belongto_relation_sys_role` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_sys_user_id_union_sys_role_id` (`sys_user_id`,`sys_role_id`),
   KEY `FKangh2v52q14hegmbw611fds0d` (`sys_role_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `sys_user_belongto_relation_sys_user_group` */
 
@@ -388,7 +441,7 @@ CREATE TABLE `sys_user_belongto_relation_sys_user_group` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_sys_user_id_union_sys_user_group_id` (`sys_user_id`,`sys_user_group_id`),
   KEY `FK7vn7hd9rhkeiwfbvnvj0hi0tu` (`sys_user_group_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `sys_user_group` */
 
@@ -407,7 +460,7 @@ CREATE TABLE `sys_user_group` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_4ulvpmlfwpsfk58miyqd0j7mr` (`code`),
   KEY `FKlr5amfoqrt4q0dsbyfqgkmuu3` (`parent_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `sys_user_group_canhave_relation_sys_permission` */
 
@@ -424,7 +477,7 @@ CREATE TABLE `sys_user_group_canhave_relation_sys_permission` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_sys_user_group_id_union_sys_permission_id` (`sys_user_group_id`,`sys_permission_id`),
   KEY `FKam1x5g5nieewi2kcn6yswncd8` (`sys_permission_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

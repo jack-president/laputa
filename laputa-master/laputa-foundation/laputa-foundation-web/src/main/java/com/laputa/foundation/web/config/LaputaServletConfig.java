@@ -18,6 +18,7 @@ import org.springframework.http.converter.support.AllEncompassingFormHttpMessage
 import org.springframework.http.converter.xml.SourceHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -31,7 +32,7 @@ import com.google.gson.GsonBuilder;
 @Configuration
 @EnableWebMvc
 @ImportResource("classpath*:laputa-springmvc/spring-mvc-base.xml")
-public class LaputaServletConfig extends WebMvcConfigurerAdapter {
+public class LaputaServletConfig implements WebMvcConfigurer {
 
     @Bean
     InternalResourceViewResolver internalResourceViewResolver() {

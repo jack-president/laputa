@@ -31,10 +31,17 @@
                     </bean>
                 </entry>
 
+                <entry key="parentLaputaAplication">
+                    <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
+                        <property name="indexNumber" value="3"/>
+                        <property name="cname" value="所属项目"/>
+                    </bean>
+                </entry>
+
 
                 <entry key="configValue">
                     <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
-                        <property name="indexNumber" value="3"/>
+                        <property name="indexNumber" value="4"/>
                         <property name="cname" value="配置值"/>
                     </bean>
                 </entry>
@@ -42,7 +49,7 @@
 
                 <entry key="configHistoryList">
                     <bean class="com.laputa.foundation.web.generate.annotae.Annotae">
-                        <property name="indexNumber" value="4"/>
+                        <property name="indexNumber" value="5"/>
                         <property name="cname" value="配置值历史"/>
                     </bean>
                 </entry>
