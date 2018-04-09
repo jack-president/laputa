@@ -1,0 +1,48 @@
+[
+  {
+    "sysOperation": {
+      "cname": "Laputa项目",
+      "code": "OPERATION_WEB_LAPUTACONFIG",
+      "prefixUrl": "/web/laputaconfig/*",
+      "descript": "Laputa项目操作"
+    },
+    "childSysOperation": [
+      {
+        "cname": "查看列表",
+        "code": "OPERATION_WEB_LAPUTACONFIG_LIST",
+        "prefixUrl": "/web/laputaconfig/list",
+        "descript": ""
+      },
+      {
+        "cname": "全量读取",
+        "code": "OPERATION_WEB_LAPUTACONFIG_READEAGER",
+        "prefixUrl": "/web/laputaconfig/readEager",
+        "descript": ""
+      },
+      {
+        "cname": "数据源读取",
+        "code": "OPERATION_WEB_LAPUTACONFIG_READDATASOURCE",
+        "prefixUrl": "/web/laputaconfig/readDataSource",
+        "descript": ""
+      },
+      {
+        "cname": "新增",
+        "code": "OPERATION_WEB_LAPUTACONFIG_CREATE",
+        "prefixUrl": "/web/laputaconfig/create",
+        "descript": ""
+      },
+      {
+        "cname": "删除",
+        "code": "OPERATION_WEB_LAPUTACONFIG_DESTORY",
+        "prefixUrl": "/web/laputaconfig/destory",
+        "descript": ""
+      },
+      {
+        "cname": "更新",
+        "code": "OPERATION_WEB_LAPUTACONFIG_UPDATE",
+        "prefixUrl": "/web/laputaconfig/update",
+        "descript": ""
+      }
+    ]
+  }
+]

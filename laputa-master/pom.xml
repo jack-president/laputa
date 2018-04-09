@@ -21,6 +21,7 @@
     <modules>
         <module>laputa-foundation</module>
         <module>laputa-fates</module>
+        <module>laputa-logger-manager-web</module>
         <!--<module>laputa-weixin</module>-->
         <module>laputa-demo</module>
     </modules>

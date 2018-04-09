@@ -86,7 +86,7 @@
     <bean id="laputaEntityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="laputaDataSource"/>
-        <property name="packagesToScan" value="com.laputa.*"/>
+        <property name="packagesToScan" value="com.laputa"/>
         <property name="persistenceProvider" ref="persistenceProvider"/>
         <property name="jpaVendorAdapter" ref="laputaHibernateJpaVendorAdapter"/>
         <property name="jpaDialect" ref="jpaDialect"/>
@@ -106,7 +106,7 @@
 
 
     <!-- Spring Data Jpa配置, 扫描base-package下所有继承于Repository<T,ID>的接口 -->
-    <jpa:repositories base-package="com.laputa.*" transaction-manager-ref="laputaTransactionManager"
+    <jpa:repositories base-package="com.laputa" transaction-manager-ref="laputaTransactionManager"
                       entity-manager-factory-ref="laputaEntityManagerFactory"/>
 
 

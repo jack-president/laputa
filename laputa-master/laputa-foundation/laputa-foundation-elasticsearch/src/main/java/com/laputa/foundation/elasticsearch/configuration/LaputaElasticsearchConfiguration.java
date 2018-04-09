@@ -20,7 +20,7 @@ import java.util.Properties;
  * Created by jiangdongping on 2018/3/8 0008.
  */
 @Configuration
-@EnableElasticsearchRepositories(elasticsearchTemplateRef = "laputaElasticsearchTemplate", basePackages = "com/laputa/**/elasticsearch/repositories")
+@EnableElasticsearchRepositories(elasticsearchTemplateRef = "laputaElasticsearchTemplate", basePackages = "com.laputa.*.elasticsearch.repositories")
 public class LaputaElasticsearchConfiguration {
 
     @Value("${elasticsearch.cluster.name:elasticsearch}")

@@ -19,11 +19,9 @@ public class DemoEcho implements InitializingBean {
 
     private static final long PERIOD = 1 * 1000;// 1秒钟
 
-    @Value("${some.k.a:@当前默认值}")
-    private String someValue;
 
-    @Value("${some.k.a:@2222}")
-    private Long someValue1;
+//    @Value("${some.k.a:@2222}")
+//    private Long someValue1;
 
     @Value("${some.k.a:@2222}")
     private Double someValue2;
@@ -41,6 +39,10 @@ public class DemoEcho implements InitializingBean {
     private Long someLongValue;
 
     private Long someLongValueA;
+
+    @Value("${some.k.a:@当前默认值}")
+    private String someValue;
+
 
     @Override
     public void afterPropertiesSet() throws Exception {
